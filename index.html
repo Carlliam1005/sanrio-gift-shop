@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanrio Dream Shop ✨</title>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Google Fonts: Quicksand for the cute shop vibe, Caveat for the handwritten love letter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom Font Assignments */
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #fdf2f8; /* Soft pink background */
+            overflow-x: hidden;
+        }
+
+        .font-handwritten {
+            font-family: 'Caveat', cursive;
+        }
+
+        /* Smooth Fade Transitions */
+        .fade-out {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            pointer-events: none;
+        }
+
+        .fade-in {
+            opacity: 1 !important;
+            transform: scale(1) !important;
+            transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
+        }
+
+        #surprise-section {
+            opacity: 0;
+            transform: scale(1.05);
+            display: none; /* Hidden initially */
+        }
+
+        /* Polaroid Photo Effect */
+        .polaroid {
+            background: white;
+            padding: 10px 10px 40px 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .polaroid:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            z-index: 10;
+        }
+
+        /* Floating Hearts Animation */
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.5) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1.5) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .floating-heart {
+            position: fixed;
+            bottom: -10%;
+            color: #ff8fa3; /* Romantic pink */
+            font-size: 24px;
+            animation: floatUp linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Glowing effect for the target item */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px #bae6fd, 0 0 30px #bae6fd; }
+            50% { box-shadow: 0 0 25px #7dd3fc, 0 0 50px #7dd3fc; }
+        }
+        .cinnamoroll-glow {
+            animation: pulse-glow 2s infinite;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased min-h-screen relative">
+
+    <!-- ==========================================
+         PAGE 1: THE FAKE SANRIO SHOP 
+         ========================================== -->
+    <main id="shop-section" class="w-full min-h-screen flex flex-col items-center pb-20 transition-all duration-700">
+        
+        <!-- Shop Header -->
+        <header class="w-full bg-white shadow-sm py-6 text-center sticky top-0 z-50 rounded-b-3xl">
+            <h1 class="text-4xl font-bold text-pink-400 tracking-wide">
+                🌸 Sanrio Dream Shop 🌸
+            </h1>
+            <p class="text-pink-300 mt-2 font-medium">Your daily dose of cuteness!</p>
+        </header>
+
+        <!-- Shop Grid -->
+        <div class="max-w-5xl mx-auto px-6 mt-12">
+            <h2 class="text-2xl font-bold text-gray-700 mb-8 text-center">✨ New Arrivals ✨</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                
+                <!-- Fake Item 1 -->
+                <div class="bg-white rounded-3xl p-4 shadow-lg hover:shadow-xl transition-shadow cursor-pointer flex flex-col items-center">
+                    <img src="assets/hellokitty.jpg" alt="Hello Kitty" class="rounded-2xl w-full object-cover aspect-square mb-4">
+                    <h3 class="font-bold text-lg text-gray-700">Hello Kitty Plush</h3>
+                    <p class="text-pink-400 font-bold mt-2">$24.99</p>
+                </div>
+
+                <!-- Fake Item 2 -->
+                <div class="bg-white rounded-3xl p-4 shadow-lg hover:shadow-xl transition-shadow cursor-pointer flex flex-col items-center">
+                    <img src="assets/melody.jpg" alt="My Melody" class="rounded-2xl w-full object-cover aspect-square mb-4">
+                    <h3 class="font-bold text-lg text-gray-700">My Melody Tote</h3>
+                    <p class="text-pink-400 font-bold mt-2">$32.00</p>
+                </div>
+
+                <!-- Fake Item 3: THE TRAP (Cinnamoroll) -->
+                <!-- Note the 'id="trigger-item"' and the glowing class to draw her attention -->
+                <div id="trigger-item" class="bg-white rounded-3xl p-4 shadow-lg hover:shadow-2xl transition-all cursor-pointer flex flex-col items-center transform hover:-translate-y-2 cinnamoroll-glow relative">
+                    <div class="absolute -top-3 -right-3 bg-yellow-300 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full animate-bounce">
+                        Must Click!
+                    </div>
+                    <img src="assets/cinnamoroll.jpg" alt="Cinnamoroll" class="rounded-2xl w-full object-cover aspect-square mb-4">
+                    <h3 class="font-bold text-xl text-blue-400">Giant Cinnamoroll</h3>
+                    <p class="text-blue-500 font-bold mt-2 text-lg">FREE!</p>
+                </div>
+
+                <!-- Fake Item 4 -->
+                <div class="bg-white rounded-3xl p-4 shadow-lg hover:shadow-xl transition-shadow cursor-pointer flex flex-col items-center">
+                    <img src="assets/pompompurin.jpg" alt="Pompompurin" class="rounded-2xl w-full object-cover aspect-square mb-4">
+                    <h3 class="font-bold text-lg text-gray-700">Pompompurin Mug</h3>
+                    <p class="text-pink-400 font-bold mt-2">$15.50</p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ==========================================
+         PAGE 2: THE SURPRISE LOVE LETTER 
+         ========================================== -->
+    <section id="surprise-section" class="w-full min-h-screen flex flex-col items-center justify-center py-12 px-4 absolute top-0 left-0 z-40 bg-pink-50">
+        
+        <!-- Container for floating hearts created by JS -->
+        <div id="hearts-container" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+
+        <div class="max-w-3xl w-full bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12 relative z-10 border-4 border-pink-200">
+            
+            <!-- Heading -->
+            <h1 class="font-handwritten text-5xl md:text-6xl text-pink-500 text-center mb-8 drop-shadow-sm">
+                Surprise! I love you! ❤️️
+            </h1>
+
+            <!-- ==========================================
+                 EDIT YOUR LETTER HERE
+                 ========================================== -->
+            <div class="font-handwritten text-2xl md:text-3xl text-gray-700 leading-relaxed space-y-6 mb-12 px-4">
+                <p>
+                    My babi the love of my life,
+                </p>
+                <p>
+                    I know you thought you were just looking at some cute Cinnamoroll plushies, but I wanted to make something special just to make you smile today. 
+                </p>
+                <p>
+                    Every day with you is better than the last. You are my favorite person, my best friend, and my whole heart. Thank you for being the amazing, wonderful, and beautiful soul that you are.
+                </p>
+                <p class="text-right font-bold text-pink-400 mt-8">
+                    Forever yours,<br>
+                    Your babi, Carl! Jajah! <!-- ⬅️ REPLACE WITH YOUR NAME -->
+                </p>
+            </div>
+
+            <!-- ==========================================
+                 PHOTO COLLAGE (REPLACE IMAGE SRCS)
+                 ========================================== -->
+            <h2 class="text-center font-bold text-gray-400 text-sm tracking-widest uppercase mb-8">Our Favorite Moments</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 relative">
+                
+                <!-- Photo 1 -->
+                <div class="polaroid transform -rotate-3 mx-auto max-w-[250px] w-full">
+                    <!-- ⬅️ REPLACE the src below with your photo (e.g., src="photo1.jpg") -->
+                    <img src="assets/Collage.jpg" alt="Us 1" class="w-full aspect-square object-cover bg-gray-100">
+                    <p class="font-handwritten text-xl text-center mt-4 text-gray-600">Cutest day!</p> <!-- ⬅️ EDIT CAPTION -->
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="polaroid transform rotate-2 translate-y-4 mx-auto max-w-[250px] w-full">
+                    <!-- ⬅️ REPLACE the src below with your photo -->
+                    <img src="assets/hotel.jpg" alt="Us 2" class="w-full aspect-square object-cover bg-gray-100">
+                    <p class="font-handwritten text-xl text-center mt-4 text-gray-600">Love you</p> <!-- ⬅️ EDIT CAPTION -->
+                </div>
+
+                <!-- Photo 3 -->
+                <div class="polaroid transform -rotate-2 mx-auto max-w-[250px] w-full">
+                    <!-- ⬅️ REPLACE the src below with your photo -->
+                    <img src="assets/Pool.jpg" alt="Us 3" class="w-full aspect-square object-cover bg-gray-100">
+                    <p class="font-handwritten text-xl text-center mt-4 text-gray-600">My favorite</p> <!-- ⬅️ EDIT CAPTION -->
+                </div>
+
+            </div>
+
+            <!-- ==========================================
+                 VIDEO PLAYER (REPLACE VIDEO SRC)
+                 ========================================== -->
+            <div class="w-full bg-pink-50 rounded-2xl p-4 md:p-6 shadow-inner border border-pink-100">
+                <h3 class="font-handwritten text-3xl text-pink-400 text-center mb-4">A Little Video For You 🎥</h3>
+                
+                <div class="aspect-video w-full rounded-xl overflow-hidden bg-gray-900 shadow-md">
+                    <!-- ⬅️️ REPLACE 'your-video-file.mp4' WITH YOUR ACTUAL VIDEO FILE NAME -->
+                    <video controls class="w-full h-full object-cover">
+                        <source src="tiktok.mp4" type="video/mp4">
+                        <!-- Fallback message if video doesn't load -->
+                        Your browser does not support the video tag. Please place a valid video file in the src.
+                    </video>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        // Wait for the document to fully load
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const shopSection = document.getElementById('shop-section');
+            const surpriseSection = document.getElementById('surprise-section');
+            const triggerItem = document.getElementById('trigger-item');
+            const heartsContainer = document.getElementById('hearts-container');
+
+            // Handle the click on the Cinnamoroll item
+            triggerItem.addEventListener('click', () => {
+                
+                // 1. Fade out the shop
+                shopSection.classList.add('fade-out');
+
+                // 2. Wait for the fade out to finish, then swap displays
+                setTimeout(() => {
+                    shopSection.style.display = 'none';
+                    surpriseSection.style.display = 'flex'; // Show the surprise section
+                    
+                    // Force browser reflow to ensure transition works
+                    void surpriseSection.offsetWidth; 
+                    
+                    // Fade in the surprise
+                    surpriseSection.classList.add('fade-in');
+                    
+                    // Start generating floating hearts
+                    startHeartAnimation();
+                    
+                    // Scroll to top just in case they scrolled down on the shop
+                    window.scrollTo(0, 0);
+
+                }, 800); // 800ms matches the CSS transition duration
+            });
+
+            // Function to create continuous floating hearts in the background
+            function startHeartAnimation() {
+                // Create a heart every 300ms
+                setInterval(createHeart, 300);
+            }
+
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.classList.add('floating-heart');
+                
+                // Randomize heart properties for a natural look
+                const leftPosition = Math.random() * 100; // 0 to 100vw
+                const animationDuration = Math.random() * 3 + 4; // 4 to 7 seconds
+                const size = Math.random() * 20 + 10; // 10px to 30px
+
+                heart.style.left = `${leftPosition}vw`;
+                heart.style.animationDuration = `${animationDuration}s`;
+                heart.style.fontSize = `${size}px`;
+                
+                // Randomize heart color slightly between pinks and reds
+                const colors = ['#ff8fa3', '#ffb3c6', '#ff4d6d', '#c9184a'];
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+
+                heartsContainer.appendChild(heart);
+
+                // Remove the heart from the DOM after animation completes to prevent memory leaks
+                setTimeout(() => {
+                    heart.remove();
+                }, animationDuration * 1000);
+            }
+        });
+    </script>
+</body>
+</html>
